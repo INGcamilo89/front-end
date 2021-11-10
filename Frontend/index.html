@@ -13,6 +13,17 @@
         
     </head>
     <body>
+    <header>           
+            <ul id="lista_menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Origen</a></li>
+                <li><a href="#">Quienes somos</a></li>
+                <li><a href="#">Barcos</a></li>
+                <li><a href="#">Visitanos</a></li>
+                <li> <a href="#">Reservas y consultas</a>   </li>
+            </ul>
+    </header>
+
         <h1> ¡Alquile un barco con nosotros!</h1>
         <h4>Por favor elija la opcion que desee</h4>           
         <select name="selector_tablas" id="select"  onchange="ver();">
@@ -93,8 +104,8 @@
         <h2> </h2>
         <button onclick="traerInfoCategory()" style="background-color:rgb(164, 167, 164)"> Consultar Categorias</button>
         <div>
-            <input type="text" id="nameCT" placeholder="name:">
-            <input type="text" id="descriptionCT" placeholder="description:">
+            <input type="text" id="Cname" placeholder="name:">
+            <input type="text" id="Cdescription" placeholder="description:">
             <h2> </h2>
         </div>
         <button onclick="guardarInfoCategory()" style="background-color:rgb(118, 216, 118)"> Guardar </button>

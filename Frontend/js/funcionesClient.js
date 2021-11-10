@@ -15,7 +15,7 @@
          success:function(respuesta)
          {
              console.log(respuesta);
-             pintarRClient(respuesta.items);
+             pintarRClient(respuesta);
          }
  
      });
@@ -24,16 +24,16 @@
  /**
   * Función de "print"
   */
- function pintarRClient(items)
+ function pintarRClient(respuesta)
  {
      let myTable="<table>";
-     for(i=0;i<items.length;i++)
+     for(i=0;i<respuesta.length;i++)
      {
          myTable+="<tr>";
-         myTable+="<td>"+items[i].name+"</td>";
-         myTable+="<td>"+items[i].email+"</td>";
-         myTable+="<td>"+items[i].password+"</td>";
-         myTable+="<td>"+items[i].age+"</td>";
+         myTable+="<td>"+respuesta[i].name+"</td>";
+         myTable+="<td>"+respuesta[i].email+"</td>";
+         myTable+="<td>"+respuesta[i].password+"</td>";
+         myTable+="<td>"+respuesta[i].age+"</td>";
          myTable+="</tr>";
      }
      myTable+="</table>";
@@ -60,19 +60,21 @@
          type:"POST",
          data:myData,
          datatype:"JSON",
-         success:function(respuesta)
+         contentType:'application/json; charset=utf-8',
+         data:JSON.stringify(myData),
+
+         success:function(response)
          {
-             $("#resultadoC").empty();
-             $("#nameC").val("");
-             $("#emailC").val("");
-             $("#passwordC").val("");
-             $("#ageC").val("");
-             traerInfoClient();
-             Swal.fire(
-                '¡Guardado!',
-                'Su entrada ha sido registrada',
-                'success')
-             //alert("Su entrada ha sido registrada")
+            console.log(response)
+            console.log("exitoso")
+ 
+            //alert("Su entrada ha sido registrada")
+         },
+         
+         error:function(jqXHR,textStatus,errorThrown)
+         {
+             window.location.reload()
+             alert("fail");
          }
      });
  }

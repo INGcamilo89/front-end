@@ -2,3 +2,38 @@
 
     display: none;
 }
+
+#lista_menu li{
+    display: inline;
+    padding: auto;
+    color:black;
+    background-color:blue;
+    
+   
+
+}
+#lista_menu{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight:bold;
+    font-size:30px;
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+a:hover {
+    color:blue;
+    background-color:white;
+}
+a {
+    color:white;
+    text-decoration:transparent;
+}
+body {
+    background-color: #ffdd90;
+    background-image: url("barco.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  

@@ -15,7 +15,7 @@
          success:function(respuesta)
          {
              console.log(respuesta);
-             pintarRBoat(respuesta.items);
+             pintarRBoat(respuesta);
          }
      });
  }
@@ -23,16 +23,16 @@
  /**
   * Función de "print"
   */
- function pintarRBoat(items)
+ function pintarRBoat(respuesta)
  {
      let myTable="<table>";
-     for(i=0;i<items.length;i++)
+     for(i=0;i<respuesta.length;i++)
      {
          myTable+="<tr>";
-         myTable+="<td>"+items[i].brand+"</td>";
-         myTable+="<td>"+items[i].years+"</td>";
-         myTable+="<td>"+items[i].description+"</td>";
-         myTable+="<td>"+items[i].name+"</td>";
+         myTable+="<td>"+respuesta[i].brand+"</td>";
+         myTable+="<td>"+respuesta[i].years+"</td>";
+         myTable+="<td>"+respuesta[i].description+"</td>";
+         myTable+="<td>"+respuesta[i].name+"</td>";
          myTable+="</tr>";
      }
      myTable+="</table>";
@@ -58,16 +58,25 @@
          url:"http://localhost:8080/api/Boat/save",
          type:"POST",
          data:myData,
+         contentType:'application/json; charset=utf-8',
+
          datatype:"JSON",
-         success:function(respuesta)
+         data:JSON.stringify(myData),
+
+         success:function(response)
          {
-            $("#resultadoB").empty();
-            $("#brandB").val("");
-            $("#yearB").val("");
-            $("#descriptionB").val("");
-            $("#nameB").val("");
+            console.log(response)
+            console.log("exitoso")
+
+
             traerInfoBoat();
             alert("Su entrada ha sido registrada")
+         },
+         
+         error:function(jqXHR,textStatus,errorThrown)
+         {
+             window.location.reload()
+             alert("fail");
          }
      });
  }

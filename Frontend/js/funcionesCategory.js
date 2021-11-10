@@ -15,7 +15,7 @@
          success:function(respuesta)
          {
              console.log(respuesta);
-             pintarRCategory(respuesta.items);
+             pintarRCategory(respuesta);
          }
      });
  }
@@ -23,14 +23,14 @@
  /**
   * Función de "print"
   */
- function pintarRCategory(items)
+ function pintarRCategory(respuesta)
  {
      let myTable="<table>";
-     for(i=0;i<items.length;i++)
+     for(i=0;i<respuesta.length;i++)
      {
          myTable+="<tr>";
-         myTable+="<td>"+items[i].name+"</td>";
-         myTable+="<td>"+items[i].description+"</td>";
+         myTable+="<td>"+respuesta[i].name+"</td>";
+         myTable+="<td>"+respuesta[i].description+"</td>";
          myTable+="</tr>";
      }
      myTable+="</table>";
@@ -40,41 +40,48 @@
  /**
   * Plantilla POST + Botón
   */
- function guardarInfoBarcos()
+ function guardarInfoCategory()
  {
-     let myData=
-     {
-        name:$("#nameCT").val(),
-        description:$("#descriptionCT").val()
+     let var2={
+        name:$("#Cname").val(),
+        description:$("#Cdescription").val()
      };
-     console.log(myData);
-     let dataToSend=JSON.stringify(myData);
+     console.log(var2);
+     let dataToSend=JSON.stringify(var2);
      $.ajax(
-     {
-         url:"http://localhost:8080/api/Category/save",
+     {  url:"http://localhost:8080/api/Category/save",
+         
          type:"POST",
-         data:myData,
+         data:var2,
          datatype:"JSON",
-         success:function(respuesta)
+         contentType:'application/json; charset=utf-8',
+         data:JSON.stringify(var2),
+         
+         success:function(response)
          {
-             $("#resultadoCT").empty();
-             $("#nameCT").val("");
-             $("#categoryCT").val("");
-             traerInfoBarcos();
-             alert("Su entrada ha sido registrada")
+            console.log(response)
+            console.log("exitoso")
+
+
+         },
+         error:function(jqXHR,textStatus,errorThrown)
+         {
+             window.location.reload()
+             alert("fail");
          }
+         
      });
  }
  
  /**
   * Plantilla PUT + Botón
   */
- function actualizarInfoBarcos()
+ function actualizarInfoCategory()
  {
      let myData=
      {
-        name:$("#nameCT").val(),
-        description:$("#descriptionCT").val(),
+        name:$("#Cname").val(),
+        description:$("#Cdescription").val(),
      };
      console.log(myData);
      let dataToSend=JSON.stringify(myData);
@@ -88,9 +95,9 @@
          success:function(respuesta)
          {
              $("#resultadoCT").empty();
-             $("#nameCT").val("");
-             $("#descripotionCT").val("");
-             traerInfoBarcos();
+             $("#Cname").val("");
+             $("#Cdescripotion").val("");
+             traerInfoCategory();
              alert("La información se ha actualizado")
          }
      });
@@ -99,7 +106,7 @@
  /**
   * Plantilla DELETE + Botón
   */
- function borrarInfoBarcos(idElemento)
+ function borrarInfoCategory(idElemento)
  {
      let myData=
      {
@@ -117,8 +124,8 @@
          success:function(respuesta)
          {
              $("#resultadoCT").empty();
-             traerInfoBarcos();
-             alert("Su entrada se ha eliminada")
+             traerInfoCategory();
+             alert("Su entrada se ha eliminada");
          }
      });
  }
