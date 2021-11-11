@@ -15,7 +15,7 @@
          success:function(respuesta)
          {
             console.log(respuesta);
-            pintarRMessage(respuesta.items);
+            pintarRMessage(respuesta);
          }
  
      });
@@ -24,15 +24,15 @@
  /**
   * Función de "print"
   */
- function pintarRMessage(items)
+ function pintarRMessage(respuesta)
  {
      let myTable="<table>";
-     for(i=0;i<items.length;i++)
+     for(i=0;i<respuesta.length;i++)
      {
         myTable+="<tr>";
-        myTable+="<td>"+items[i].messageText+"</td>";
-        myTable+="<td>"+items[i].client+"</td>";
-        myTable+="<td>"+items[i].boat+"</td>";
+        myTable+="<td>"+respuesta[i].messageText+"</td>";
+        myTable+="<td>"+respuesta[i].client+"</td>";
+        myTable+="<td>"+respuesta[i].boat+"</td>";
         myTable+="</tr>";
      }
      myTable+="</table>";
@@ -58,14 +58,21 @@
          type:"POST",
          data:myData,
          datatype:"JSON",
-         success:function(respuesta)
+         
+         contentType:'application/json; charset=utf-8',
+         
+         success:function(response)
          {
-            $("#resultadoM").empty();
-            $("#messagetextM").val("");
-            $("#clientM").val("");
-            $("#boatM").val("");
-            traerInfoMessage();
-            alert("Su entrada ha sido registrada")
+            console.log(response)
+            console.log("exitoso")
+ 
+            //alert("Su entrada ha sido registrada")
+         },
+         
+         error:function(jqXHR,textStatus,errorThrown)
+         {
+             window.location.reload()
+             alert("fail");
          }
      });
  }
